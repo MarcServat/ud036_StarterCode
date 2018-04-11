@@ -1,7 +1,6 @@
 import fresh_tomatoes
 import movie
 import httplib
-import urllib
 import json
 
 movies = []
@@ -12,7 +11,6 @@ conn.request("GET", "/3/list/62897?api_key=181786faaaf5a64117addec2dfef8a63")
 res = conn.getresponse()
 data = res.read().decode("utf-8")
 response = json.loads(data)
-process_response(response)
 
 
 def process_response(response):
@@ -41,6 +39,7 @@ def get_trailer(id):
     results = res_trailer["results"]
     return results[0]["key"]
 
-
+# Get data from reponse
+process_response(response)
 # Send list of movies to a frontend layer
 fresh_tomatoes.open_movies_page(movies)
